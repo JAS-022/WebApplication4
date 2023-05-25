@@ -1,0 +1,47 @@
+﻿@model IEnumerable<WebApplication4.Models.Customer>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Customers Index</h1>
+<button type="button" class="btn btn-primary btn-lg mt-3 mb-3" data-bs-toggle="modal" data-bs-target="#createNewCustomer">Create New</button>
+@*<a asp-action="Create" asp-controller="Customers" class="btn btn-success">Create</a>*@
+
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th scope="col">@Html.DisplayNameFor(model => model.FullName)</th>
+            <th scope="col">@Html.DisplayNameFor(model => model.MobileNumber)</th>
+            <th scope="col">@Html.DisplayNameFor(model => model.City)</th>
+            <th scope="col">@Html.DisplayNameFor(model => model.IsActive)</th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.FullName)</td>
+                <td>@Html.DisplayFor(modelItem => item.MobileNumber)</td>
+                <td>@Html.DisplayFor(modelItem => item.City)</td>
+                @if (item.IsActive == true)
+                {
+                    <td>Yes</td>
+                }
+                else
+                {
+                    <td>No</td>
+                }
+                @*<td>@Html.DisplayFor(modelItem => item.IsActive)</td>*@
+                <td class="text-center">
+                    @*<a asp-action="Edit" asp-controller="Customers" asp-route-id="@item.Id">Edit</a>*@
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="@("#editCustomer-" + item.Id)" data-url="@Url.Action($"Edit/{item.Id}")">Edit</button>
+                    @await Html.PartialAsync("_EditCustomerPartialView", item)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@await Html.PartialAsync("_CustomerPartialView", new Customer())

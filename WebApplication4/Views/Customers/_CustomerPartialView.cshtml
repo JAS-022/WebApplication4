@@ -1,0 +1,154 @@
+﻿@model Customer
+@{
+    Layout = null;
+}
+@*<div class="modal fade" id="createCustomer" aria-labelledby="createCustomerName" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="createCustomerName">Customer</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form asp-action="Create">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="FirstName" class="control-label"></label>
+                        <input asp-for="FirstName" class="form-control" />
+                        <span asp-validation-for="FirstName" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="LastName" class="control-label"></label>
+                        <input asp-for="LastName" class="form-control" />
+                        <span asp-validation-for="LastName" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="MobileNumber" class="control-label"></label>
+                        <input asp-for="MobileNumber" class="form-control" />
+                        <span asp-validation-for="MobileNumber" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="City" class="control-label"></label>
+                        <input asp-for="City" class="form-control" />
+                        <span asp-validation-for="City" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="UserID" class="control-label"></label>
+                        <input asp-for="UserID" class="form-control" />
+                        <span asp-validation-for="UserID" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="IsActive" class="control-label"></label>
+                        <input type="checkbox" asp-for="IsActive" class="form-control" />
+                        <span asp-validation-for="IsActive" class="text-danger"></span>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>*@
+
+<div class="modal fade" id="createNewCustomer" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="staticBackdropLabel">Create New Customer</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                @*<form asp-action="Create" method="post">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="FirstName" class="control-label"></label>
+                        <input asp-for="FirstName" class="form-control" />
+                        <span asp-validation-for="FirstName" class="text-danger"></span>
+                        @Html.LabelFor(m => m.FirstName)
+                        @Html.TextBoxFor(m => m.FirstName)
+                        @Html.ValidationMessageFor(model => model.FirstName)
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="LastName" class="control-label"></label>
+                        <input asp-for="LastName" class="form-control" />
+                        <span asp-validation-for="LastName" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="MobileNumber" class="control-label"></label>
+                        <input asp-for="MobileNumber" class="form-control" />
+                        <span asp-validation-for="MobileNumber" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="City" class="control-label"></label>
+                        <input asp-for="City" class="form-control" />
+                        <span asp-validation-for="City" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="UserID" class="control-label"></label>
+                        <input asp-for="UserID" class="form-control" />
+                        <span asp-validation-for="UserID" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="IsActive" class="control-label"></label>
+                        <input type="checkbox" asp-for="IsActive" />
+                        <span asp-validation-for="IsActive" class="text-danger"></span>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Save</button>
+                    </div>
+                </form>*@
+
+                @*@using (Html.BeginForm("Create", "Customers"))*@
+                @using (Html.BeginForm("Create", "Customers", FormMethod.Post, new { @id = "createCustomer", @name = "createCustomer", onsubmit = "return validateForm()" }))
+
+                {
+                    @*<div class="alert alert-danger">
+                        @Html.ValidationMessage("FirstName")
+                    </div>*@
+                    <div class="label">@Html.Label("FirstName")</div>
+                    <div class="field">@Html.TextBoxFor(m => m.FirstName, new { @class = "form-control" })</div>
+                    @*<div class="error">@Html.ValidationMessageFor(model => model.FirstName)</div>*@
+                    @*@if (ViewBag.Message != null)
+                    {
+                        <br />
+
+                        <span style="color:red;">User with this name already exists</span>
+                    }*@
+
+                    <div class="label">@Html.Label("LastName")</div>
+                    <div class="field">@Html.TextBoxFor(m => m.LastName, new { @class = "form-control" })</div>
+                    <div class="error">@Html.ValidationMessageFor(model => model.LastName)</div>
+
+                    <div class="label">@Html.Label("MobileNumber")</div>
+                    <div class="field">@Html.TextBoxFor(m => m.MobileNumber, new { @class = "form-control" })</div>
+                    @*<div class="error">@Html.ValidationMessageFor(model => model.MobileNumber)</div>*@
+
+                    <div class="label">@Html.Label("City")</div>
+                    <div class="field">@Html.TextBoxFor(m => m.City, new { @class = "form-control" })</div>
+                    <div class="error">@Html.ValidationMessageFor(model => model.City)</div>
+
+                    <div class="label">@Html.Label("UserID")</div>
+                    <div class="field">@Html.TextBoxFor(m => m.UserID, new { @class = "form-control" })</div>
+                    <div class="error">@Html.ValidationMessageFor(model => model.UserID)</div>
+
+                    <div class="label">@Html.Label("Is Active")</div>
+                    <div class="field">@Html.CheckBoxFor(m => m.IsActive)</div>
+                    <div class="error">@Html.ValidationMessageFor(model => model.IsActive)</div>
+
+                    @Html.ValidationSummary()
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        @*<input class="field" id="submit" type="submit" value="Create" />*@
+                        <button type="submit" id="createCustomerBtn" class="btn btn-primary">Create</button>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>

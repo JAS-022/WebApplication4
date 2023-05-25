@@ -1,0 +1,67 @@
+﻿@model WebApplication4.Models.PurchaseOrder
+
+<div class="row">
+    <form asp-action="Create" asp-area="Orders" method="post">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="row">
+            <div class="col-12">
+                <div class="form-group row mb-3">
+                    <label class="control-label col-3">Customer</label>
+                    <input class="form-control col-9" style="width: auto;" />
+                    @*<span asp-validation-for="FirstName" class="text-danger"></span>*@
+                </div>
+                <div class="form-group row mb-3">
+                    <label asp-for="DateOfDelivery" class="control-label col-3"></label>
+                    <input asp-for="DateOfDelivery" class="form-control" style="width: auto;" />
+                    <span asp-validation-for="DateOfDelivery" class="text-danger"></span>
+                </div>
+                <div class="form-group row mb-5">
+                    <label asp-for="Status" class="control-label col-3"></label>
+                    <select style="width: auto;">
+                        <option value="" disabled selected>-- Select Staus --</option>
+                        <option value="New">New</option>
+                        <option value="Completed">Completed</option>
+                        <option value="Cancelled">Cancelled</option>
+                    </select>
+                    <span asp-validation-for="Status" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+        @*<div class="form-group">
+        <label asp-for="City" class="control-label"></label>
+        <input asp-for="City" class="form-control" />
+        <span asp-validation-for="City" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+        <label asp-for="UserID" class="control-label"></label>
+        <input asp-for="UserID" class="form-control" />
+        <span asp-validation-for="UserID" class="text-danger"></span>
+        </div>*@
+        <button type="button" class="btn btn-primary btn-lg mt-3 mb-5" data-bs-toggle="modal" data-bs-target="#">Add Item</button>
+
+        <h2>Items</h2>
+        <table class="table table-bordered table-hover mb-2">
+            <thead>
+                <tr>
+                    <th scope="col">Sku</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col">Price</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>Edit</td>
+                </tr>
+            </tbody>
+        </table>
+        <h4>Total Amount:</h4><span></span>
+        <div class="col-12 text-center">
+            <a asp-action="Index" asp-controller="Orders" class="btn btn-secondary">Cancel</a>
+            <button type="submit" class="btn btn-primary">Create</button>
+        </div>
+    </form>
+</div>

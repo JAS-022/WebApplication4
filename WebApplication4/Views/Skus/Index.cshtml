@@ -1,0 +1,49 @@
+﻿@model IEnumerable<WebApplication4.Models.Sku>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Sku Index</h1>
+<button type="button" class="btn btn-primary btn-lg mt-3 mb-3" data-bs-toggle="modal" data-bs-target="#createNewSku">Create New</button>
+@*<a asp-action="Create" asp-controller="Customers" class="btn btn-success">Create</a>*@
+
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th scope="col">@Html.DisplayNameFor(model => model.Name)</th>
+            <th scope="col">@Html.DisplayNameFor(model => model.Code)</th>
+            <th scope="col">@Html.DisplayNameFor(model => model.UnitPrice)</th>
+            <th scope="col">@Html.DisplayNameFor(model => model.IsActive)</th>
+            <th scope="col">Image</th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.Name)</td>
+                <td>@Html.DisplayFor(modelItem => item.Code)</td>
+                <td>@Html.DisplayFor(modelItem => item.UnitPrice)</td>
+                @if (item.IsActive == true)
+                {
+                    <td>Yes</td>
+                }
+                else
+                {
+                    <td>No</td>
+                }
+                <td>Image</td>
+                @*<td>@Html.DisplayFor(modelItem => item.IsActive)</td>*@
+                <td class="text-center">
+                    @*<a asp-action="Edit" asp-controller="Customers" asp-route-id="@item.Id">Edit</a>*@
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="@("#editSku-" + item.Id)" data-url="@Url.Action($"Edit/{item.Id}")">Edit</button>
+                    @await Html.PartialAsync("_EditSkuPartialView", item)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@await Html.PartialAsync("_SkuPartialView", new Sku())

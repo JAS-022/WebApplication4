@@ -1,0 +1,48 @@
+﻿@model Sku
+@{
+    Layout = null;
+}
+<div class="modal fade" id="createNewSku" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="staticBackdropLabel">Create New Sku</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+
+                @*@using (Html.BeginForm("Create", "Customers"))*@
+                @using (Html.BeginForm("Create", "Skus", FormMethod.Post, new { @id = "createSku", @name = "createSku", onsubmit = "return skuValidateForm()" }))
+
+                {
+                    @*<div class="alert alert-danger">
+                @Html.ValidationMessage("FirstName")
+                </div>*@
+                    <div class="label">@Html.Label("Name")</div>
+                    <div class="field">@Html.TextBoxFor(m => m.Name, new { @class = "form-control" })</div>
+                    @*<div class="error">@Html.ValidationMessageFor(model => model.Name)</div>*@
+
+                    <div class="label">@Html.Label("Code")</div>
+                    <div class="field">@Html.TextBoxFor(m => m.Code, new { @class = "form-control" })</div>
+                    @*<div class="error">@Html.ValidationMessageFor(model => model.Code)</div>*@
+
+                    <div class="label">@Html.Label("UnitPrice")</div>
+                    <div class="field">@Html.TextBoxFor(m => m.UnitPrice, new { @class = "form-control" })</div>
+                    <div class="error">@Html.ValidationMessageFor(model => model.UnitPrice)</div>
+
+                    <div class="label">@Html.Label("Is Active")</div>
+                    <div class="field">@Html.CheckBoxFor(m => m.IsActive)</div>
+                    <div class="error">@Html.ValidationMessageFor(model => model.IsActive)</div>
+
+                    @Html.ValidationSummary()
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        @*<input class="field" id="submit" type="submit" value="Create" />*@
+                        <button type="submit" id="createSkuBtn" class="btn btn-primary">Create</button>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>

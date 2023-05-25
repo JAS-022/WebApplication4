@@ -1,0 +1,50 @@
+﻿@model Customer
+
+<div class="modal fade" id="editCustomer-@Model.Id" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="staticBackdropLabel">Edit Customer</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                @using (Html.BeginForm("Edit", "Customers", FormMethod.Post, new { @id = "editCustomer", @name = "editCustomer", onsubmit = "return editValidateForm()" }))
+
+                {
+                    @Html.HiddenFor(m => m.Id)
+                    <div class="label" style="text-align: left;">@Html.Label("FirstName")</div>
+                    <div class="field">@Html.TextBoxFor(m => m.FirstName, new { @class = "form-control" })</div>
+                    @*<div class="error">@Html.ValidationMessageFor(model => model.FirstName)</div>*@
+
+                    <div class="label" style="text-align: left;">@Html.Label("LastName")</div>
+                    <div class="field">@Html.TextBoxFor(m => m.LastName, new { @class = "form-control" })</div>
+                    <div class="error">@Html.ValidationMessageFor(model => model.LastName)</div>
+
+                    <div class="label" style="text-align: left;">@Html.Label("MobileNumber")</div>
+                    <div class="field">@Html.TextBoxFor(m => m.MobileNumber, new { @id = "editMobileNumber", @class = "form-control" })</div>
+                    @*<div class="error">@Html.ValidationMessageFor(model => model.MobileNumber)</div>*@
+
+                    <div class="label" style="text-align: left;">@Html.Label("City")</div>
+                    <div class="field">@Html.TextBoxFor(m => m.City, new { @class = "form-control" })</div>
+                    <div class="error">@Html.ValidationMessageFor(model => model.City)</div>
+
+                    <div class="label" style="text-align: left;">@Html.Label("UserID")</div>
+                    <div class="field">@Html.TextBoxFor(m => m.UserID, new { @class = "form-control" })</div>
+                    <div class="error">@Html.ValidationMessageFor(model => model.UserID)</div>
+
+                    <div class="label" style="text-align: left;">@Html.Label("Is Active")</div>
+                    <div class="field" style="text-align: left;">@Html.CheckBoxFor(m => m.IsActive)</div>
+                    <div class="error">@Html.ValidationMessageFor(model => model.IsActive)</div>
+
+                    @Html.ValidationSummary()
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        @*<input class="field" id="submit" type="submit" value="Edit" />*@
+                        <button type="submit" id="editCustomerBtn" class="btn btn-primary">Edit</button>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
